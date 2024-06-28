@@ -75,4 +75,3 @@ class LogoutView(APIView):
             'massage': 'success'
         }
         return response
-

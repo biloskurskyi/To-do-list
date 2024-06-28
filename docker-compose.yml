@@ -44,6 +44,16 @@ services:
     depends_on:
       - app
 
+#  flake8:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile
+#    volumes:
+#      - ./app:/app
+#    command: flake8 /app
+#    depends_on:
+#      - app
+
 
 volumes:
   dev-db-data:
