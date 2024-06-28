@@ -34,6 +34,16 @@ services:
       - POSTGRES_USER=devuser
       - POSTGRES_PASSWORD=changeme
 
+  isort:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./app:/app
+    command: isort -rc /app
+    depends_on:
+      - app
+
 
 volumes:
   dev-db-data:

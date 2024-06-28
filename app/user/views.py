@@ -1,11 +1,14 @@
+import datetime
+
+import jwt
 from django.shortcuts import render
+from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework.exceptions import AuthenticationFailed
+
+from core.models import User
 
 from .serializers import UserSerializer
-from core.models import User
-import jwt, datetime
 
 
 # Create your views here.
@@ -72,3 +75,4 @@ class LogoutView(APIView):
             'massage': 'success'
         }
         return response
+
