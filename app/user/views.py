@@ -116,7 +116,7 @@ class LogoutView(APIView):
 #
 #         return Response(serializer.errors, status=400)
 
-class PostView(APIView):
+class PostsView(APIView):
     permission_classes = (IsAuthenticated,)
 
     def get(self, request):
@@ -133,5 +133,35 @@ class PostView(APIView):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=201)
+
+        return Response(serializer.errors, status=400)
+
+
+class PostDetailView(APIView):
+    permission_classes = (IsAuthenticated,)
+
+    # serializer_class = PostSerializer
+
+    def get(self, request, pk):
+        user = request.user
+        post = UserPost.objects.filter(id=pk, author_id=user.id).first()
+        serializer = PostSerializer(post)
+        return Response(serializer.data)
+
+    def put(self, request, pk):
+        user = request.user
+        request.data['author'] = user.id
+        post = UserPost.objects.filter(id=pk, author_id=user.id).first()
+        if not post:
+            return Response({"error": "Post not found"}, status=404)
+
+        title = request.data.get('title', post.title)
+        post_type = request.data.get('post_type', post.post_type)
+        serializer = PostSerializer(post, data={'title': title, 'post_type': post_type, 'author': user.id},
+                                    partial=True)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
 
         return Response(serializer.errors, status=400)
