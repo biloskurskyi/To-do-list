@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from core.models import User
+from core.models import User, UserPost
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -16,3 +16,9 @@ class UserSerializer(serializers.ModelSerializer):
             instance.set_password(password)
         instance.save()
         return instance
+
+
+class PostSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserPost
+        fields = ['id', 'author', 'title', 'post_type']

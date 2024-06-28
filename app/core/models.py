@@ -11,3 +11,12 @@ class User(AbstractUser):
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
+
+
+class UserPost(models.Model):
+    INFO_POST = 0
+    PERSONAL_POST = 1
+    POST_TYPE = ((INFO_POST, 'Info post'), (PERSONAL_POST, 'Personal post'),)
+    author = models.ForeignKey(User, on_delete=models.PROTECT)
+    title = models.CharField(max_length=255)
+    post_type = models.SmallIntegerField(default=INFO_POST, choices=POST_TYPE)
