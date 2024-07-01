@@ -123,6 +123,9 @@ class PostsView(APIView):
         user = request.user
         posts = UserPost.objects.filter(author_id=user.id)
         serializer = PostSerializer(posts, many=True)
+        if not posts.exists():
+            return Response({"message": "No posts found for this user"}, status=200)
+
         return Response(serializer.data)
 
     def post(self, request):
@@ -145,6 +148,9 @@ class PostDetailView(APIView):
     def get(self, request, pk):
         user = request.user
         post = UserPost.objects.filter(id=pk, author_id=user.id).first()
+        if not post:
+            return Response({"error": "Post not found"}, status=404)
+
         serializer = PostSerializer(post)
         return Response(serializer.data)
 
@@ -165,3 +171,17 @@ class PostDetailView(APIView):
             return Response(serializer.data)
 
         return Response(serializer.errors, status=400)
+
+    def delete(self, request, pk):
+        user = request.user
+        post = UserPost.objects.filter(id=pk, author_id=user.id).first()
+        if not post:
+            return Response({"error": "Post not found"}, status=404)
+
+        try:
+            post.delete()
+            return Response({
+                'message': 'Delete successful!'
+            }, status=204)
+        except Exception as e:
+            return Response({"error": str(e)}, status=400)
