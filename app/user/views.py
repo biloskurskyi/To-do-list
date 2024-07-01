@@ -47,20 +47,6 @@ class LoginView(APIView):
         # return Response({'jwt': token})
 
 
-# class UserView(APIView):
-#     def get(self, request):
-#         token = request.COOKIES.get('jwt')
-#         if not token:
-#             raise AuthenticationFailed("Unauthenticated user!")
-#         try:
-#             payload = jwt.decode(token, 'secret', algorithms=['HS256'])
-#         except jwt.ExpiredSignatureError:
-#             raise AuthenticationFailed("Unauthenticated user!")
-#         user = User.objects.filter(id=payload['id']).first()
-#         serializer = UserSerializer(user)
-#         return Response(serializer.data)
-
-
 class LogoutView(APIView):
     permission_classes = (IsAuthenticated,)
 
@@ -73,48 +59,19 @@ class LogoutView(APIView):
         return response
 
 
-# class PostView(APIView):
-#     permission_classes = (IsAuthenticated,)
-#
-#     def get(self, request):
-#         token = request.COOKIES.get('jwt')
-#         if not token:
-#             raise AuthenticationFailed("Unauthenticated user!")
-#         try:
-#             payload = jwt.decode(token, 'secret', algorithms=['HS256'])
-#         except jwt.ExpiredSignatureError:
-#             raise AuthenticationFailed("Unauthenticated user!")
-#
-#         user_id = payload['id']
-#         posts = UserPost.objects.filter(author_id=user_id)
-#
-#         serializer = PostSerializer(posts, many=True)
-#         return Response(serializer.data)
-#
-#     def post(self, request):
-#         token = request.COOKIES.get('jwt')
-#         if not token:
-#             raise AuthenticationFailed("Unauthenticated user!")
-#         try:
-#             payload = jwt.decode(token, 'secret', algorithms=['HS256'])
-#         except jwt.ExpiredSignatureError:
-#             raise AuthenticationFailed("Unauthenticated user!")
-#
-#         user_id = payload['id']
-#         user = User.objects.filter(id=user_id).first()
-#
-#         if not user:
-#             raise AuthenticationFailed("User does not exist!")
-#
-#         # data = request.data.copy()
-#         request.data['author'] = user.id
-#         serializer = PostSerializer(data=request.data)
-#
-#         if serializer.is_valid():
-#             serializer.save()
-#             return Response(serializer.data, status=201)
-#
-#         return Response(serializer.errors, status=400)
+class DeleteView(APIView):
+    permission_classes = (IsAuthenticated,)
+
+    def delete(self, request):
+        user = request.user
+
+        posts = UserPost.objects.filter(author=user)
+        if posts.exists():
+            posts.delete()
+
+        user.delete()
+        return Response({'message': 'User deleted successfully'})
+
 
 class PostsView(APIView):
     permission_classes = (IsAuthenticated,)
