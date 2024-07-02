@@ -1,4 +1,4 @@
-from django.contrib.auth.models import (AbstractUser, BaseUserManager, )
+from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.db import models
 
 
@@ -38,6 +38,10 @@ class User(AbstractUser):
 
     objects = UserManager()
 
+    class Meta:
+        verbose_name = "User"
+        verbose_name_plural = "Users"
+
 
 class UserPost(models.Model):
     INFO_POST = 0
@@ -46,3 +50,7 @@ class UserPost(models.Model):
     author = models.ForeignKey(User, on_delete=models.PROTECT)
     title = models.CharField(max_length=255)
     post_type = models.SmallIntegerField(default=INFO_POST, choices=POST_TYPE)
+
+    class Meta:
+        verbose_name = "User post"
+        verbose_name_plural = "User posts"
