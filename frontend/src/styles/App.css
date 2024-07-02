@@ -188,6 +188,12 @@ header .title {
     background-color: #a32c23; /* Even darker shade when button is clicked */
 }
 
+.button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: CENTER;
+}
+
 .open-page {
     background-color: #4cae4c; /* Green background color */
     color: #ffffff; /* White text color */
@@ -207,6 +213,30 @@ header .title {
 
 .open-page:active {
     background-color: #3c933c; /* Even darker shade when button is clicked */
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.login-form label {
+    margin-bottom: 8px;
+}
+
+.login-form input {
+    padding: 10px;
+    margin-bottom: 16px;
+    width: 300px; /* Adjust width as needed */
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+.login-form input[type="password"] {
+    font-family: monospace; /* Ensures asterisks are visible in password field */
 }
 
 
