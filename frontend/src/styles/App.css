@@ -1,0 +1,308 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.app-page {
+    background-image: linear-gradient(to right, #5897fb, #f5dd5d);
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+header {
+    background-color: #4cae4c;
+    padding: 15px;
+    text-align: center;
+    border-radius: 40px;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+header .title {
+    color: #FFFFFF;
+    font-size: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.create-button {
+    margin-left: 20px; /* Adjust the margin as needed to position the button */
+}
+
+.create-button button {
+    background-color: #5897fb;
+    color: white;
+    padding: 10px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth transition for background color */
+    margin-right: 10px;
+}
+
+.create-button button:active {
+    background-color: #3b6ca6; /* Darker shade when button is clicked */
+}
+
+.main {
+    height: 480px;
+    width: 480px;
+
+    background-color: #f5dd5d;
+    /*flex-direction: column; */
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    border-radius: 55px;
+}
+
+.main .title {
+    color: #FFFFFF;
+    padding: 10px;
+    font-size: 25px;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.main .info-block {
+    text-align: center;
+}
+
+.main .info {
+    color: #FFFFFF;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    text-align: center;
+}
+
+.button-form {
+    color: #FFFFFF;
+    background-color: #4cae4c;
+    font-weight: bold;
+    font-size: 25px;
+    padding: 2em;
+    margin: 10px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth transition for background color */
+}
+
+.button-form:active {
+    background-color: #357d35; /* Darker shade when button is clicked */
+}
+
+
+.list-block {
+    width: 100%;
+    border-radius: 15px;
+    /*box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);*/
+    margin-top: 40px;
+    max-height: 400px; /* Adjust the height as needed */
+    overflow-y: scroll; /* Enable vertical scrolling */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+/* Hide scrollbar for Webkit-based browsers (Chrome, Safari) */
+.list-block::-webkit-scrollbar {
+    display: none;
+}
+
+.task-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.task-item {
+    /*display: flex;*/
+    /*justify-content: flex-start;*/
+    /*align-items: center;*/
+    padding: 20px;
+    margin: 10px 15px;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    text-align: left;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #000000;
+}
+
+.title-db, .type-db {
+    max-width: 300px; /* Adjust the maximum width as needed */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.type-db {
+    margin-top: 10px;
+}
+
+.post-details {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 50px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.post-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+    max-width: 400px; /* Set maximum width for the title */
+    word-wrap: break-word;
+}
+
+.post-type {
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.delete-button {
+    background-color: #e1564a;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+    transition: background-color 0.3s ease; /* Smooth transition for background color */
+    margin-top: 10px;
+    margin-right: 10px; /* Space between buttons */
+}
+
+.delete-button:hover {
+    background-color: #c94033; /* Darker shade when button is hovered */
+}
+
+.delete-button:active {
+    background-color: #a32c23; /* Even darker shade when button is clicked */
+}
+
+.open-page {
+    background-color: #4cae4c; /* Green background color */
+    color: #ffffff; /* White text color */
+    font-weight: bold;
+    font-size: 14px;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    margin-top: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth transition for background color */
+}
+
+.open-page:hover {
+    background-color: #45a745; /* Darker shade when button is hovered */
+}
+
+.open-page:active {
+    background-color: #3c933c; /* Even darker shade when button is clicked */
+}
+
+
+footer {
+    background-color: #23527c;
+    text-align: center;
+    border-radius: 20px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+footer .title {
+    color: #FFFFFF;
+    font-size: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+@media screen and (max-width: 1280px) {
+
+    .app-page .main {
+        height: 360px;
+        width: 360px;
+    }
+
+    .button-form {
+        font-weight: bold;
+        font-size: 15px;
+    }
+
+    .list-block {
+        margin-top: 25px;
+        max-height: 300px;
+    }
+
+    .title-db, .type-db {
+        max-width: 220px;
+    }
+}
+
+@media screen and (max-width: 840px) {
+    .main {
+        height: 300px;
+        width: 300px;
+    }
+
+    .app-page .main {
+        height: 360px;
+        width: 360px;
+    }
+
+    .button-form {
+        font-weight: bold;
+        font-size: 15px;
+    }
+
+    .list-block {
+        margin-top: 25px;
+        max-height: 240px;
+    }
+
+    .title-db, .type-db {
+        max-width: 170px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .main {
+        height: 250px;
+        width: 250px;
+    }
+
+    .button-form {
+        font-weight: bold;
+        font-size: 10px;
+    }
+
+    .list-block {
+        margin-top: 25px;
+        max-height: 200px;
+    }
+
+    .title-db, .type-db {
+        max-width: 130px;
+    }
+
+    .post-details {
+        background-color: #f0f0f0;
+        padding: 20px;
+        border-radius: 10px;
+        margin-top: 50px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .post-title {
+        font-size: 16px;
+    }
+}
