@@ -16,9 +16,6 @@ class UserSerializer(serializers.ModelSerializer):
         if password is not None:
             instance.set_password(password)
 
-        if instance.is_superuser and not instance.username:
-            instance.username = 'admin'
-
         instance.save()
         return instance
 
