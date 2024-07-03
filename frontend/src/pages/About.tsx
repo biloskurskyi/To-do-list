@@ -1,5 +1,6 @@
 import React from 'react';
 import '/src/styles/App.css'
+import { Link } from 'react-router-dom';
 
 const About = () => {
     return (
@@ -11,8 +12,8 @@ const About = () => {
                 <h2 className="title">To Do List</h2>
                 <div className="info-block">
                     <h3 className="info">Please Log in or Sign up in system</h3>
-                    <button className="button-form">Log In</button>
-                    <button className="button-form">Sign up</button>
+                     <Link to="/login"><button className="button-form">Log In</button></Link>
+                    <Link to="/signup"><button className="button-form">Sign up</button></Link>
                 </div>
             </div>
             <footer>
