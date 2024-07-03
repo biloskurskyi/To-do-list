@@ -276,7 +276,7 @@ footer .title {
     }
 }
 
-@media screen and (max-width: 840px) {
+@media screen and (max-width: 860px) {
     .main {
         height: 300px;
         width: 300px;

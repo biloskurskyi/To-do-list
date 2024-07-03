@@ -1,12 +1,36 @@
-import React from 'react';
+import React, {useState} from 'react';
+import axios from 'axios';
 import '/src/styles/App.css'
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 const LogIn = () => {
-     const handleSubmit = (event) => {
-        event.preventDefault(); // Prevents default form submission behavior
-        // You can handle form submission logic here, e.g., sending data to backend
-        console.log('Form submitted!');
+    // const [formData, setFormData] = useState(
+    //     {
+    //         name: '',
+    //         email: '',
+    //         password: ''
+    //     }
+    // );
+    //
+    // const handleChange = (event) => {
+    //     const {name, value} = event.target;
+    //     setFormData({...formData, [name]: value});
+    // };
+    //
+    // const handleSubmit = async (event) => {
+    //     event.preventDefault();
+    //
+    //     try {
+    //         const response = await axios.post('http://localhost:8080/api/register/', formData)
+    //         console.log(response.data)
+    //     }
+    //     catch (error) {
+    //         console.log(error)
+    //     }
+    // };
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
     };
 
 
@@ -24,11 +48,17 @@ const LogIn = () => {
                         <input type="email" id="email" name="email" required/>
                         <label className="info">Password:</label>
                         <input type="password" id="password" name="password" required/>
-                        <Link to="/usertodolist"><button className="open-page">Log In</button></Link>
+                        <Link to="/usertodolist">
+                            <button className="open-page">Log In</button>
+                        </Link>
                     </form>
                     <div className="button-container">
-                        <Link to="/signup"><button className="open-page" style={{backgroundColor: '#5897fb'}}>Sign Up</button></Link>
-                        <Link to="/about"><button className="open-page" style={{backgroundColor: '#dc8916'}}>About page</button></Link>
+                        <Link to="/signup">
+                            <button className="open-page" style={{backgroundColor: '#5897fb'}}>Sign Up</button>
+                        </Link>
+                        <Link to="/about">
+                            <button className="open-page" style={{backgroundColor: '#dc8916'}}>About page</button>
+                        </Link>
                     </div>
                 </div>
             </div>
