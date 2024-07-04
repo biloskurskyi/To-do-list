@@ -133,7 +133,7 @@ header .title {
 }
 
 .title-db, .type-db {
-    max-width: 300px; /* Adjust the maximum width as needed */
+    /*max-width: 300px; !* Adjust the maximum width as needed *!*/
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -157,11 +157,13 @@ header .title {
     margin-bottom: 10px;
     max-width: 400px; /* Set maximum width for the title */
     word-wrap: break-word;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .post-type {
     font-weight: bold;
     margin-bottom: 20px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .delete-button {

@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import '/src/styles/App.css'
-import {Link, useNavigate} from 'react-router-dom';
+import {Link, } from 'react-router-dom';
 import axiosInstance from '../API/api.tsx'
 import PostList from "../components/PostList.tsx";
 import Header from "../components/Header.tsx";
@@ -8,8 +8,6 @@ import Logout from "../components/Logout.tsx";
 
 const UserToDoList = () => {
     const [todos, setTodos] = useState([]);
-    // const navigate = useNavigate()
-    // const [error, setError] = useState();
 
     useEffect(() => {
         const fetchToDos = async () => {
@@ -33,9 +31,6 @@ const UserToDoList = () => {
                     <Link to="/createpost">
                         <button>Create post</button>
                     </Link>
-                    {/*<Link to="/login">*/}
-                    {/*    <button style={{backgroundColor: '#e1564a'}}>Log out</button>*/}
-                    {/*</Link>*/}
                     <Logout/>
                 </div>
             </header>
