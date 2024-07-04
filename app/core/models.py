@@ -42,6 +42,9 @@ class User(AbstractUser):
         verbose_name = "User"
         verbose_name_plural = "Users"
 
+    def __str__(self):
+        return f"{self.name} with email {self.email}"
+
 
 class UserPost(models.Model):
     INFO_POST = 0
