@@ -26,7 +26,11 @@ const LogIn = () => {
         try {
             const response = await axios.post("http://localhost:8000/api/login/", formData)
             const token = response.data.jwt;
+            const userId = response.data.id;
+            console.log('id:',userId);
+
             localStorage.setItem('jwtToken', token);
+            localStorage.setItem('userId', userId);
             console.log("Token stored:", token);
             navigate("/usertodolist");
         } catch (error) {

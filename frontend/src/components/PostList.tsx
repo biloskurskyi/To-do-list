@@ -19,7 +19,7 @@ const PostList = ({posts}) => {
             {posts.map(post => (
                 <li key={post.id} className="task-item">
                     <div className="title-db">Title: {post.title}</div>
-                    <div className="type-db">Type: {post.post_type}</div>
+                    <div className="type-db">Type: {post.post_type_display}</div>
                     <button className="open-page" onClick={() => handleOpenPage(post.id)}>Open page</button>
                 </li>
             ))}

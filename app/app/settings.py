@@ -146,3 +146,7 @@ REST_FRAMEWORK = {
         'user.authentication.JWTAuthentication',
     ),
 }
+
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:5173',  # Adjust to your React frontend URL
+]

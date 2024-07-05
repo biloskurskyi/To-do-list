@@ -2,6 +2,7 @@ import datetime
 
 import jwt
 from django.shortcuts import render
+from rest_framework import status
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -42,9 +43,7 @@ class LoginView(APIView):
 
         token = jwt.encode(payload, 'secret', algorithm='HS256')
 
-        return Response({'jwt': token})
-
-        # return Response({'jwt': token})
+        return Response({'jwt': token, 'id': user.id})
 
 
 class LogoutView(APIView):
@@ -86,10 +85,9 @@ class PostsView(APIView):
         return Response(serializer.data)
 
     def post(self, request):
-        user = request.user
-        request.data['author'] = user.id
+        request.data['author'] = request.user.id
         serializer = PostSerializer(data=request.data)
-
+        serializer.is_valid(raise_exception=True)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=201)
@@ -142,3 +140,11 @@ class PostDetailView(APIView):
             }, status=204)
         except Exception as e:
             return Response({"error": str(e)}, status=400)
+
+
+class PostTypeChoicesView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        choices = UserPost.POST_TYPE
+        return Response(choices)

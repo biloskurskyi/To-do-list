@@ -21,12 +21,12 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class PostSerializer(serializers.ModelSerializer):
-    author = UserSerializer()
+    # author = UserSerializer()
     post_type_display = serializers.SerializerMethodField()
 
     class Meta:
         model = UserPost
-        fields = ['id', 'author', 'title', 'post_type_display']
+        fields = ['id', 'author', 'title', 'post_type', 'post_type_display']
 
     def get_post_type_display(self, obj):
         return obj.get_post_type_display()

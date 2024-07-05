@@ -52,7 +52,7 @@ class UserPost(models.Model):
     POST_TYPE = ((INFO_POST, 'Info post'), (PERSONAL_POST, 'Personal post'),)
     author = models.ForeignKey(User, on_delete=models.PROTECT)
     title = models.CharField(max_length=255)
-    post_type = models.SmallIntegerField(default=INFO_POST, choices=POST_TYPE)
+    post_type = models.SmallIntegerField(choices=POST_TYPE)
 
     class Meta:
         verbose_name = "User post"
