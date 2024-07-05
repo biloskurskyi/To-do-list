@@ -77,6 +77,7 @@ const CreatePost = () => {
                             value={formData.title}
                             onChange={handleChange}
                             required
+                            maxLength={255}
                         />
                         <label className="info">Post Type:</label>
                         <select

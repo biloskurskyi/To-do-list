@@ -54,7 +54,7 @@ const UserPost = () => {
                 <div className="post-details">
                     <h2 className="post-title">Title: {post.title}</h2>
                     <div className="post-type">Type: {post.post_type_display}</div>
-                    <Link to="/usertodolist">
+                    <Link to={`/updatepost/${id}`}>
                         <button className="delete-button" style={{backgroundColor: '#5897fb'}}>Update post</button>
                     </Link>
                     <DeletePost postId={id}/>

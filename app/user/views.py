@@ -148,7 +148,6 @@ class PostTypeChoicesView(APIView):
         choices = UserPost.POST_TYPE
         return Response(choices)
 
-
 # def get_author_name(author_id):
 #     user = get_object_or_404(User, id=author_id)
 #     return user.name

@@ -6,6 +6,7 @@ import LogIn from "../pages/LogIn";
 import SignUp from "../pages/SignUp";
 import CreatePost from "../pages/CreatePost";
 import App from "../App";
+import UpdatePost from "../pages/UpdatePost.tsx";
 
 
 const rootLoader = async () => {
@@ -47,6 +48,11 @@ const routes: RouteObject[] = [
     {
         path: "/createpost",
         element: <CreatePost/>,
+        loader: rootLoader,
+    },
+    {
+        path: "/updatepost/:id",
+        element: <UpdatePost/>,
         loader: rootLoader,
     },
 ];
