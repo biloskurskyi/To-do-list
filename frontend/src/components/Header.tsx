@@ -4,8 +4,11 @@ const Header = ({posts}) => {
     if (!posts || !posts.length) {
         return <h1 className="title">Create your first post</h1>;
     } else {
-        const authorName = posts[0].author.name;
-        const authorEmail = posts[0].author.email;
+        const { author } = posts[0];
+        console.log(author)
+        console.log(author.name)
+        const authorName = posts[0].author_name;
+        const authorEmail = posts[0].author_email;
 
         return (
             <div>

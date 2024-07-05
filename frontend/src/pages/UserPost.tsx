@@ -5,6 +5,7 @@ import Logout from "../components/Logout.tsx";
 import axiosInstance from "../API/api.tsx";
 import PostList from "../components/PostList.tsx";
 import {request} from "axios";
+import DeletePost from "../components/DeletePost.tsx";
 
 const UserPost = () => {
     const [post, setPost] = useState(null);
@@ -54,7 +55,10 @@ const UserPost = () => {
                     <h2 className="post-title">Title: {post.title}</h2>
                     <div className="post-type">Type: {post.post_type_display}</div>
                     <Link to="/usertodolist">
-                        <button className="delete-button">Delete post</button>
+                        <button className="delete-button" style={{backgroundColor: '#5897fb'}}>Update post</button>
+                    </Link>
+                    <Link to="/usertodolist">
+                       <DeletePost/>
                     </Link>
                 </div>
             </div>

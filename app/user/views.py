@@ -1,7 +1,7 @@
 import datetime
 
 import jwt
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from rest_framework import status
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.permissions import IsAuthenticated
@@ -91,7 +91,6 @@ class PostsView(APIView):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=201)
-
         return Response(serializer.errors, status=400)
 
 
@@ -148,3 +147,8 @@ class PostTypeChoicesView(APIView):
     def get(self, request):
         choices = UserPost.POST_TYPE
         return Response(choices)
+
+
+# def get_author_name(author_id):
+#     user = get_object_or_404(User, id=author_id)
+#     return user.name
