@@ -57,9 +57,7 @@ const UserPost = () => {
                     <Link to="/usertodolist">
                         <button className="delete-button" style={{backgroundColor: '#5897fb'}}>Update post</button>
                     </Link>
-                    <Link to="/usertodolist">
-                       <DeletePost/>
-                    </Link>
+                    <DeletePost postId={id}/>
                 </div>
             </div>
             <footer>
