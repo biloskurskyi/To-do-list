@@ -1,62 +1,17 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import '/src/styles/App.css'
-import {Link, useNavigate} from 'react-router-dom';
-import axiosInstance from "../API/api.tsx";
+import {Link} from 'react-router-dom';
+import useCreatePost from "../hooks/useCreatePost.tsx";
 
 const CreatePost = () => {
 
-    const [formData, setFormData] = useState(
-        {
-            title: '',
-            post_type: '',
-        }
-    );
-    const [postTypeChoices, setPostTypeChoices] = useState([]);
-    const navigate = useNavigate();
 
-    useEffect(() => {
-        fetchPostTypeChoices();
-    }, []);
-
-    const fetchPostTypeChoices = async () => {
-        try {
-            const response = await axiosInstance.get('/post-type-choices/');
-            setPostTypeChoices(response.data);
-        } catch (error) {
-            console.error('Error fetching post type choices:', error.message);
-            if (error.response) {
-                console.error('Response data:', error.response.data);
-                console.error('Response status:', error.response.status);
-            } else if (error.request) {
-                console.error('Request:', error.request);
-            } else {
-                console.error('Error message:', error.message);
-            }
-        }
-    };
-
-
-    const handleChange = (event) => {
-        const {name, value} = event.target;
-        setFormData({...formData, [name]: value});
-    };
-
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        try {
-            console.log(formData.post_type)
-            const postData = {
-                title: formData.title,
-                post_type: formData.post_type, // Convert to number here
-            };
-            console.log(postData)
-            const response = await axiosInstance.post('/posts/', postData);
-            console.log('Post created:', response.data);
-            navigate("/usertodolist")
-        } catch (error) {
-            console.error('There was an error creating the post:', error.message);
-        }
-    };
+    const {
+        postTypeChoices,
+        formData,
+        handleChange,
+        handleSubmit,
+    } = useCreatePost()
 
 
     return (

@@ -1,9 +1,15 @@
-import React, {useState} from 'react';
+import React, {ChangeEvent, FormEvent, useState} from 'react';
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
 
+interface SignUpData {
+    name: string,
+    email: string,
+    password: string
+}
+
 const UseSignUp = () => {
-    const [formData, setFormData] = useState(
+    const [formData, setFormData] = useState<SignUpData>(
         {
             name: '',
             email: '',
@@ -13,14 +19,14 @@ const UseSignUp = () => {
 
     const navigate = useNavigate();
 
-    const [error, setError] = useState();
+    const [error, setError] = useState<string | undefined>();
 
-    const handleChange = (event) => {
+    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         const {name, value} = event.target;
         setFormData({...formData, [name]: value});
     };
 
-    const handleSubmit = async (event) => {
+    const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
         try {

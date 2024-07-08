@@ -9,7 +9,7 @@ import App from "../App";
 import UpdatePost from "../pages/UpdatePost.tsx";
 
 
-const rootLoader = async () => {
+const rootLoader = async (): Promise<null | Response> => {
     const token = localStorage.getItem("jwtToken");
     if (!token) {
         return redirect("/login");
@@ -22,10 +22,6 @@ const routes: RouteObject[] = [
         path: "/about",
         element: <App/>,
     },
-    // {
-    //     path: "/about",
-    //     element: <About/>,
-    // },
     {
         path: "/login",
         element: <LogIn/>,

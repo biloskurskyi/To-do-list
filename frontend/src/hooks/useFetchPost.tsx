@@ -1,15 +1,22 @@
 import { useState, useEffect } from 'react';
 import axiosInstance from '../API/api.tsx';
 
+interface PostData {
+    id: number;
+    title: string;
+    content: string;
+}
+
 const useFetchPost = (id) => {
-    const [post, setPost] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const [post, setPost] = useState<PostData | null>(null);
+    const [loading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState<string | null>(null);
+
 
     useEffect(() => {
         const fetchPost = async () => {
             try {
-                const response = await axiosInstance.get(`/post/${id}`);
+                const response = await axiosInstance.get<PostData>(`/post/${id}`);
                 setPost(response.data);
             } catch (error) {
                 setError('Post not found');
