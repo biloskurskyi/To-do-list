@@ -1,47 +1,10 @@
-import React, {useState} from 'react';
-import axios from 'axios';
+import React from 'react';
 import '/src/styles/App.css'
-import {Link, useNavigate} from 'react-router-dom';
+import {Link} from 'react-router-dom';
+import useLoginForm from "../hooks/useLoginForm.tsx";
 
 const LogIn = () => {
-    const [formData, setFormData] = useState(
-        {
-            email: '',
-            password: ''
-        }
-    )
-
-    const navigate = useNavigate()
-
-    const [error, setError] = useState();
-
-    const handleChange = (event) => {
-        const {name, value} = event.target;
-        setFormData({...formData, [name]: value});
-    }
-
-
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        try {
-            const response = await axios.post("http://localhost:8000/api/login/", formData)
-            const token = response.data.jwt;
-            const userId = response.data.id;
-            console.log('id:',userId);
-
-            localStorage.setItem('jwtToken', token);
-            localStorage.setItem('userId', userId);
-            console.log("Token stored:", token);
-            navigate("/usertodolist");
-        } catch (error) {
-            console.log(error)
-            if (axios.isAxiosError(error)) {
-                setError('Error: try another email or check your password!');
-            }
-        }
-
-
-    };
+    const {formData, error, handleChange, handleSubmit} = useLoginForm();
 
 
     return (

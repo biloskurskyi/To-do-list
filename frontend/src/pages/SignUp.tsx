@@ -1,42 +1,11 @@
-import React, {useState} from 'react';
+import React from 'react';
 import '/src/styles/App.css'
-import {Link, useNavigate} from 'react-router-dom';
-import axios from "axios";
+import {Link} from 'react-router-dom';
+import useSignUp from "../hooks/useSignUp.tsx";
 
 const SignUp = () => {
 
-    const [formData, setFormData] = useState(
-        {
-            name: '',
-            email: '',
-            password: ''
-        }
-    );
-
-    const navigate = useNavigate();
-
-    const [error, setError] = useState();
-
-    const handleChange = (event) => {
-        const {name, value} = event.target;
-        setFormData({...formData, [name]: value});
-    };
-
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-
-        try {
-            const response = await axios.post('http://localhost:8000/api/register/', formData)
-            console.log(response.data)
-            navigate("/login");
-
-        } catch (error) {
-            console.log(error)
-            if (axios.isAxiosError(error)) {
-                setError('Error: try another email or check if your data is correct!');
-            }
-        }
-    };
+    const {formData, error, handleChange, handleSubmit} = useSignUp();
 
     return (
         <div className="app-page">
@@ -44,7 +13,7 @@ const SignUp = () => {
                 <h1 className="title">To do list can help you to manage your day more effective!</h1>
                 {error && <p style={{color: 'red', fontSize: '20px'}}>{error}</p>}
             </header>
-            <div className="main" style={{height: '510px'}}>
+            <div className="main" style={{height: '540px'}}>
                 <h2 className="title">To Do List</h2>
                 <div className="info-block">
                     <h3 className="info">Please Log in or Sign up in system</h3>

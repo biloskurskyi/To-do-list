@@ -1,8 +1,6 @@
-from django.contrib.auth.base_user import BaseUserManager
+from core.models import User, UserPost
 from django.shortcuts import get_object_or_404
 from rest_framework import serializers
-
-from core.models import User, UserPost
 
 
 class UserSerializer(serializers.ModelSerializer):

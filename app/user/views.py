@@ -1,14 +1,11 @@
 import datetime
 
 import jwt
-from django.shortcuts import get_object_or_404, render
-from rest_framework import status
+from core.models import User, UserPost
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
-
-from core.models import User, UserPost
 
 from .serializers import PostSerializer, UserSerializer
 

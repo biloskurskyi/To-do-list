@@ -1,31 +1,13 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import '/src/styles/App.css'
 import {Link, useParams} from 'react-router-dom';
 import Logout from "../components/Logout.tsx";
-import axiosInstance from "../API/api.tsx";
-import PostList from "../components/PostList.tsx";
-import {request} from "axios";
 import DeletePost from "../components/DeletePost.tsx";
+import useFetchPost from "../hooks/useFetchPost.tsx";
 
 const UserPost = () => {
-    const [post, setPost] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-    const {id} = useParams(); // Get the ID from the URL
-
-    useEffect(() => {
-        const fetchToDo = async () => {
-            try {
-                const response = await axiosInstance.get(`/post/${id}`);
-                setPost(response.data);
-            } catch (error) {
-                setError('Post not found');
-            } finally {
-                setLoading(false);
-            }
-        };
-        fetchToDo();
-    }, [id]);
+    const { id } = useParams();
+    const { post, loading, error } = useFetchPost(id);
 
     if (loading) {
         return <h1>Loading...</h1>;
@@ -38,6 +20,8 @@ const UserPost = () => {
     if (!post) {
         return <h1>Post not found</h1>;
     }
+
+
 
     return (
         <div className="app-page">
