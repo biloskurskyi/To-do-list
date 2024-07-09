@@ -141,6 +141,13 @@ CORS_ALLOW_CREDENTIALS = True
 #         'rest_framework.permissions.IsAuthenticated',
 #     ]
 # }
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'digitalautoservice2024@gmail.com'
+EMAIL_HOST_PASSWORD = 'pupbqkzrnergcfwk'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'user.authentication.JWTAuthentication',
@@ -150,3 +157,6 @@ REST_FRAMEWORK = {
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173',  # Adjust to your React frontend URL
 ]
+
+FRONTEND_BASE_URL = "http://localhost:5173"
+

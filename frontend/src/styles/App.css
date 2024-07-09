@@ -29,6 +29,8 @@ header .title {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+
+
 .create-button {
     margin-left: 20px; /* Adjust the margin as needed to position the button */
 }
@@ -319,7 +321,7 @@ footer .title {
 
     .list-block {
         margin-top: 25px;
-        max-height: 240px;
+        max-height: 380px;
     }
 
     .title-db, .type-db {
@@ -329,7 +331,7 @@ footer .title {
 
 @media screen and (max-width: 480px) {
     .main {
-        height: 250px;
+        height: 280px;
         width: 250px;
     }
 
@@ -340,7 +342,7 @@ footer .title {
 
     .list-block {
         margin-top: 25px;
-        max-height: 200px;
+        max-height: 340px;
     }
 
     .title-db, .type-db {
@@ -359,5 +361,6 @@ footer .title {
     .post-title {
         font-size: 16px;
     }
+
 }
 

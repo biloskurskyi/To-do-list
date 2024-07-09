@@ -1,6 +1,7 @@
 import React, {ChangeEvent, FormEvent, useState} from 'react';
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
+import axiosInstance from "../API/api.tsx";
 
 interface SignUpData {
     name: string,
@@ -30,7 +31,7 @@ const UseSignUp = () => {
         event.preventDefault();
 
         try {
-            const response = await axios.post('http://localhost:8000/api/register/', formData)
+            const response = await axiosInstance.post('/register/', formData)
             console.log(response.data)
             navigate("/login");
 

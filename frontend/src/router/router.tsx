@@ -7,6 +7,7 @@ import SignUp from "../pages/SignUp";
 import CreatePost from "../pages/CreatePost";
 import App from "../App";
 import UpdatePost from "../pages/UpdatePost.tsx";
+import ActivateUser from "../pages/ActivateUser.tsx";
 
 
 const rootLoader = async (): Promise<null | Response> => {
@@ -51,6 +52,11 @@ const routes: RouteObject[] = [
         element: <UpdatePost/>,
         loader: rootLoader,
     },
+    {
+        path: "/activate/:userId",
+        element: <ActivateUser/>
+    },
+
 ];
 
 export const router = createBrowserRouter(routes);

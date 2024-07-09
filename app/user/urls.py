@@ -1,7 +1,8 @@
 from django.urls import path
 
-from .views import (DeleteView, LoginView, LogoutView, PostDetailView,
-                    PostsView, PostTypeChoicesView, RegisterView)
+from .views import (ActivateUserView, DeleteView, LoginView, LogoutView,
+                    PostDetailView, PostsView, PostTypeChoicesView,
+                    RegisterView)
 
 app_name = 'user'
 
@@ -10,6 +11,8 @@ urlpatterns = [
     path('login/', LoginView.as_view(), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
     path('delete/', DeleteView.as_view(), name='delete'),
+
+    path('activate/<int:user_id>/', ActivateUserView.as_view(), name='activate-user'),
 
     path('posts/', PostsView.as_view(), name='posts'),
     path('post/<int:pk>/', PostDetailView.as_view(), name='post'),

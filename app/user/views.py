@@ -1,11 +1,16 @@
 import datetime
 
 import jwt
-from core.models import User, UserPost
+from django.core.mail import send_mail
+from django.shortcuts import get_object_or_404
+from rest_framework import status
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
+
+from app.settings import FRONTEND_BASE_URL
+from core.models import User, UserPost
 
 from .serializers import PostSerializer, UserSerializer
 
@@ -15,8 +20,29 @@ class RegisterView(APIView):
     def post(self, request):
         serializer = UserSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        serializer.save()
+        user = serializer.save()
+
+        frontend_base_url = FRONTEND_BASE_URL  # Replace with your actual frontend base URL
+        activation_link = f"{frontend_base_url}/activate/{user.id}/"
+        print(activation_link)
+        subject = 'Welcome to Our Service'
+        message = (
+            f"Thank you for registering. Your account is currently inactive. "
+            f"For activate click this link: {activation_link}")  # {activation_link}
+        # f"For activate click this link: http://localhost:8000/api/activate/{user.id}/")
+        from_email = 'digitalautoservice2024@gmail.com'
+        recipient_list = [user.email]
+
+        send_mail(subject, message, from_email, recipient_list)
         return Response(serializer.data)
+
+
+class ActivateUserView(APIView):
+    def get(self, request, user_id):
+        user = get_object_or_404(User, pk=user_id)
+        user.is_active = True
+        user.save()
+        return Response({'message': 'User activated successfully'}, status=status.HTTP_200_OK)
 
 
 class LoginView(APIView):
@@ -31,6 +57,9 @@ class LoginView(APIView):
 
         if not user.check_password(password):
             raise AuthenticationFailed('Incorrect password!')
+
+        if not user.is_active:
+            raise AuthenticationFailed('User not active!')
 
         payload = {
             'id': user.id,
