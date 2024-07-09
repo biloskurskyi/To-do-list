@@ -7,7 +7,8 @@ import SignUp from "../pages/SignUp";
 import CreatePost from "../pages/CreatePost";
 import App from "../App";
 import UpdatePost from "../pages/UpdatePost.tsx";
-import ActivateUser from "../pages/ActivateUser.tsx";
+import ActivationStatus from "../pages/ActivationStatus.tsx";
+import Layout from "../pages/common/Layout.tsx";
 
 
 const rootLoader = async (): Promise<null | Response> => {
@@ -19,44 +20,53 @@ const rootLoader = async (): Promise<null | Response> => {
 };
 
 const routes: RouteObject[] = [
-    {
-        path: "/about",
-        element: <App/>,
-    },
-    {
-        path: "/login",
-        element: <LogIn/>,
-    },
-    {
-        path: "/signup",
-        element: <SignUp/>,
-    },
+        {
+            path: "/",
+            element: <App/>,
+            children: [
+                {
+                    path: "/about",
+                    element: <About/>,
+                },
+                {
+                    path: "/login",
+                    element: <LogIn/>,
+                },
+                {
+                    path: "/signup",
+                    element: <SignUp/>,
+                },
 
-    {
-        path: "/usertodolist",
-        element: <UserToDoList/>,
-        loader: rootLoader,
-    },
-    {
-        path: "/userpost/:id",
-        element: <UserPost/>,
-        loader: rootLoader,
-    },
-    {
-        path: "/createpost",
-        element: <CreatePost/>,
-        loader: rootLoader,
-    },
-    {
-        path: "/updatepost/:id",
-        element: <UpdatePost/>,
-        loader: rootLoader,
-    },
-    {
-        path: "/activate/:token",
-        element: <ActivateUser/>
-    },
+                {
+                    path: "/usertodolist",
+                    element: <UserToDoList/>,
+                    loader: rootLoader,
+                },
 
-];
+                {
+                    path: "/createpost",
+                    element: <CreatePost/>,
+                    loader: rootLoader,
+                },
+                {
+                    path: "/updatepost/:id",
+                    element: <UpdatePost/>,
+                    loader: rootLoader,
+                },
+                {
+                    path: "/activate/:token",
+                    element: <ActivationStatus/>
+                },
+            ],
+        },
+        {
+            path: "/userpost/:id",
+            element: <UserPost/>,
+            loader: rootLoader,
+        },
+
+
+    ]
+;
 
 export const router = createBrowserRouter(routes);

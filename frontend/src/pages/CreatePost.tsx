@@ -15,7 +15,7 @@ const CreatePost = () => {
 
 
     return (
-        <div className="app-page">
+        <div>
             <header>
                 <h1 className="title">To do list can help you to manage your day more effective!</h1>
             </header>
@@ -59,9 +59,6 @@ const CreatePost = () => {
                     </div>
                 </div>
             </div>
-            <footer>
-                <h1 className="title">Footer</h1>
-            </footer>
         </div>
     )
 };

@@ -5,7 +5,7 @@ import axiosInstance from '../API/api.tsx'
 import PostList from "../components/PostList.tsx";
 import Header from "../components/Header.tsx";
 import Logout from "../components/Logout.tsx";
-import MyModal from "../components/UI/MyModal.tsx";
+import MyModal from "../components/UI/MyModal/MyModal.tsx";
 import DeleteUser from "../components/DeleteUser.tsx";
 
 const UserToDoList = () => {
@@ -27,7 +27,7 @@ const UserToDoList = () => {
 
 
     return (
-        <div className="app-page">
+        <div>
             <header>
                 <Header posts={todos}/>
                 <div className="create-button">
@@ -41,9 +41,7 @@ const UserToDoList = () => {
             </header>
             <div className="main">
                 <div className="list-block">
-                    <ul className="task-list">
-                        <PostList posts={todos}/>
-                    </ul>
+                    <PostList posts={todos}/>
                     <MyModal visible={modal} setVisible={setModal}>
                         <div style={{display: 'flex', justifyContent: 'center'}}>
                             <h1 className="post-title">Are you sure?</h1>
@@ -52,9 +50,6 @@ const UserToDoList = () => {
                     </MyModal>
                 </div>
             </div>
-            <footer>
-                <h1 className="title">Footer</h1>
-            </footer>
         </div>
     );
 };

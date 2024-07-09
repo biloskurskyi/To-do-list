@@ -8,15 +8,15 @@ const LogIn = () => {
 
 
     return (
-        <div className="app-page">
+        <div>
             <header>
                 <h1 className="title">To do list can help you to manage your day more effective!</h1>
 
                 {error && <p style={{color: 'red', fontSize: '20px'}}>{error}</p>}
             </header>
-            <div className="main" style={{height: '520px'}}>
+            <div className="main" style={{height: '480px'}}>
                 <h2 className="title">To Do List</h2>
-                <div className="info-block" >
+                <div className="info-block">
                     <h3 className="info">Please Log in or Sign up in system</h3>
                     <h5 style={{fontFamily: 'Arial, Helvetica, sans-serif', color: 'white'}}>Confirm your email if you
                         have
@@ -41,9 +41,6 @@ const LogIn = () => {
                     </div>
                 </div>
             </div>
-            <footer>
-                <h1 className="title">Footer</h1>
-            </footer>
         </div>
     );
 };

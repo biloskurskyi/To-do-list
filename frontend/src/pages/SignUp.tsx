@@ -8,12 +8,12 @@ const SignUp = () => {
     const {formData, error, handleChange, handleSubmit} = useSignUp();
 
     return (
-        <div className="app-page">
+        <div>
             <header>
                 <h1 className="title">To do list can help you to manage your day more effective!</h1>
                 {error && <p style={{color: 'red', fontSize: '20px'}}>{error}</p>}
             </header>
-            <div className="main" style={{height: '540px'}}>
+            <div className="main" style={{height: '470px'}}>
                 <h2 className="title">To Do List</h2>
                 <div className="info-block">
                     <h3 className="info">Please Log in or Sign up in system</h3>
@@ -29,7 +29,7 @@ const SignUp = () => {
                                onChange={handleChange} required/>
                         <button type="submit" className="open-page" style={{backgroundColor: '#5897fb'}}>Sign Up</button>
                     </form>
-                    <div className="button-container">
+                    <div className="button-container" style={{ display: 'flex', justifyContent: 'center', flexDirection: 'row', gap: '10px' }}>
                         <Link to="/login">
                             <button className="open-page">Log In</button>
                         </Link>
@@ -39,9 +39,6 @@ const SignUp = () => {
                     </div>
                 </div>
             </div>
-            <footer>
-                <h1 className="title">Footer</h1>
-            </footer>
         </div>
     );
 };

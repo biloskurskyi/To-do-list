@@ -51,7 +51,7 @@ header .title {
 }
 
 .main {
-    height: 480px;
+    height: 420px;
     width: 480px;
 
     background-color: #f5dd5d;
@@ -103,8 +103,8 @@ header .title {
     width: 100%;
     border-radius: 15px;
     /*box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);*/
-    margin-top: 40px;
-    max-height: 400px; /* Adjust the height as needed */
+    margin-top: 30px;
+    max-height: 390px; /* Adjust the height as needed */
     overflow-y: scroll; /* Enable vertical scrolling */
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none; /* Internet Explorer 10+ */
@@ -117,16 +117,19 @@ header .title {
 
 .task-list {
     list-style-type: none;
-    padding: 0;
-    margin: 0;
+    /*padding-top: 10%;*/
+    padding-right: 10%;
+    /*padding: 0 0;*/
+    /*padding: 0;*/
+    /*margin: 0;*/
 }
 
 .task-item {
     /*display: flex;*/
     /*justify-content: flex-start;*/
     /*align-items: center;*/
-    padding: 20px;
-    margin: 10px 15px;
+    padding: 15px;
+    margin: 20px 20px;
     background-color: #e0e0e0;
     border-radius: 5px;
     text-align: left;
@@ -149,7 +152,7 @@ header .title {
     background-color: #f0f0f0;
     padding: 20px;
     border-radius: 10px;
-    margin-top: 50px;
+    margin-top: 40px;
     margin-left: 10px;
     margin-right: 10px;
 }
@@ -342,7 +345,7 @@ footer .title {
 
     .list-block {
         margin-top: 25px;
-        max-height: 340px;
+        max-height: 240px;
     }
 
     .title-db, .type-db {

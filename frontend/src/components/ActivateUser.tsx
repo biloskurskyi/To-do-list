@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
-import axiosInstance from "../API/api.tsx";
 import {useParams} from "react-router-dom";
 
 const ActivateUser = () => {
@@ -22,10 +21,7 @@ const ActivateUser = () => {
     }, [token]);
 
     return (
-        <div>
-            <h2>Activation Status</h2>
-            <p>{activationStatus}</p>
-        </div>
+        activationStatus
     );
 };
 export default ActivateUser;
