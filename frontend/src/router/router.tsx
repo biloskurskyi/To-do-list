@@ -53,7 +53,7 @@ const routes: RouteObject[] = [
         loader: rootLoader,
     },
     {
-        path: "/activate/:userId",
+        path: "/activate/:token",
         element: <ActivateUser/>
     },
 

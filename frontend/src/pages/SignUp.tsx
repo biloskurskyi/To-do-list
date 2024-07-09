@@ -27,7 +27,7 @@ const SignUp = () => {
                         <label className="info">Password:</label>
                         <input type="password" id="password" name="password" value={formData.password}
                                onChange={handleChange} required/>
-                        <button className="open-page" style={{backgroundColor: '#5897fb'}}>Sign Up</button>
+                        <button type="submit" className="open-page" style={{backgroundColor: '#5897fb'}}>Sign Up</button>
                     </form>
                     <div className="button-container">
                         <Link to="/login">

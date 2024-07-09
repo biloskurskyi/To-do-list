@@ -31,8 +31,11 @@ const UseSignUp = () => {
         event.preventDefault();
 
         try {
-            const response = await axiosInstance.post('/register/', formData)
+            console.log(formData)
+            const response = await axios.post('http://localhost:8000/api/register/', formData)
+            console.log(2)
             console.log(response.data)
+            console.log(3)
             navigate("/login");
 
         } catch (error) {

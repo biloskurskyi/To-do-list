@@ -4,23 +4,22 @@ import axiosInstance from "../API/api.tsx";
 import {useParams} from "react-router-dom";
 
 const ActivateUser = () => {
-    const {userId} = useParams();
+    const {token}: string = useParams();
     const [activationStatus, setActivationStatus] = useState('Activating...');
 
     useEffect(() => {
         const activateUser = async () => {
             try {
-                console.log(userId)
-                const response = await axiosInstance.get(`/activate/${userId}/`);
+                const response = await axios.get(`http://localhost:8000/api/activate/${token}/`);
                 setActivationStatus(response.data.message);
             } catch (error) {
-                console.error('Error activating user:', error.message);
+                console.error('Error activating user:', error);
                 setActivationStatus('Error activating user');
             }
         };
 
         activateUser();
-    }, [userId]);
+    }, [token]);
 
     return (
         <div>

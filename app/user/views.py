@@ -1,4 +1,5 @@
 import datetime
+import uuid
 
 import jwt
 from django.core.mail import send_mail
@@ -13,6 +14,7 @@ from app.settings import FRONTEND_BASE_URL
 from core.models import User, UserPost
 
 from .serializers import PostSerializer, UserSerializer
+from .utils import decode_activation_token, generate_activation_token
 
 
 # Create your views here.
@@ -22,27 +24,38 @@ class RegisterView(APIView):
         serializer.is_valid(raise_exception=True)
         user = serializer.save()
 
-        frontend_base_url = FRONTEND_BASE_URL  # Replace with your actual frontend base URL
-        activation_link = f"{frontend_base_url}/activate/{user.id}/"
-        print(activation_link)
+        token = generate_activation_token(user.id)
+
+        frontend_base_url = FRONTEND_BASE_URL
         subject = 'Welcome to Our Service'
         message = (
             f"Thank you for registering. Your account is currently inactive. "
-            f"For activate click this link: {activation_link}")  # {activation_link}
+            f"For activate click this link: {frontend_base_url}/activate/{token}/")  # {activation_link}
         # f"For activate click this link: http://localhost:8000/api/activate/{user.id}/")
         from_email = 'digitalautoservice2024@gmail.com'
         recipient_list = [user.email]
 
         send_mail(subject, message, from_email, recipient_list)
+        print(serializer.data)
         return Response(serializer.data)
 
 
 class ActivateUserView(APIView):
-    def get(self, request, user_id):
-        user = get_object_or_404(User, pk=user_id)
+    permission_classes = []
+
+    def get(self, request, token):
+        # user = get_object_or_404(User, pk=user_id)
+        # user.is_active = True
+        # user.save()
+        # return Response({'message': 'User activated successfully'}, status=status.HTTP_200_OK)
+        user_id = decode_activation_token(token)
+        if not user_id:
+            return Response({'message': 'Invalid or expired activation link'}, status=status.HTTP_400_BAD_REQUEST)
+
+        user = get_object_or_404(User, id=user_id)
         user.is_active = True
         user.save()
-        return Response({'message': 'User activated successfully'}, status=status.HTTP_200_OK)
+        return Response({'message': 'User activated successfully!'}, status=status.HTTP_200_OK)
 
 
 class LoginView(APIView):
