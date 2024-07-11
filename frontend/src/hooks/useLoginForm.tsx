@@ -1,5 +1,5 @@
 import React, {ChangeEvent, FormEvent, useState} from 'react';
-import {useNavigate} from "react-router-dom";
+import {NavigateFunction, useNavigate} from "react-router-dom";
 import axios from "axios";
 
 interface LoginData {
@@ -15,21 +15,21 @@ const useLoginForm = () => {
         }
     )
 
-    const navigate = useNavigate()
+    const navigate: NavigateFunction = useNavigate()
 
     const [error, setError] = useState<string | undefined>();
 
-    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const handleChange = (event: ChangeEvent<HTMLInputElement>):void => {
         const {name, value} = event.target;
         setFormData({...formData, [name]: value});
     }
 
 
-    const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
         event.preventDefault();
         try {
             const response = await axios.post<{ jwt: string; id: number }>("http://localhost:8000/api/login/", formData)
-            const token = response.data.jwt;
+            const token:string = response.data.jwt;
             const userId = response.data.id;
             console.log('id:', userId);
 

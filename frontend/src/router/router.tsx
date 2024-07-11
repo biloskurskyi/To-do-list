@@ -1,4 +1,4 @@
-import {createBrowserRouter, redirect, RouteObject} from 'react-router-dom';
+import {createBrowserRouter, Navigate, redirect, RouteObject} from 'react-router-dom';
 import About from "../pages/About";
 import UserToDoList from "../pages/UserToDoList";
 import UserPost from "../pages/UserPost";
@@ -8,11 +8,10 @@ import CreatePost from "../pages/CreatePost";
 import App from "../App";
 import UpdatePost from "../pages/UpdatePost.tsx";
 import ActivationStatus from "../pages/ActivationStatus.tsx";
-import Layout from "../pages/common/Layout.tsx";
 
 
 const rootLoader = async (): Promise<null | Response> => {
-    const token = localStorage.getItem("jwtToken");
+    const token:string = localStorage.getItem("jwtToken");
     if (!token) {
         return redirect("/login");
     }
@@ -24,6 +23,10 @@ const routes: RouteObject[] = [
             path: "/",
             element: <App/>,
             children: [
+                {
+                    path: "/",
+                    element: <Navigate to="/about" replace/>,
+                },
                 {
                     path: "/about",
                     element: <About/>,

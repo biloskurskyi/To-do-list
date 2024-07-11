@@ -1,13 +1,21 @@
 import React, {ChangeEvent, FormEvent, useEffect, useState} from 'react';
-import {useNavigate} from "react-router-dom";
+import {NavigateFunction, useNavigate} from "react-router-dom";
 import axiosInstance from "../API/api.tsx";
+import {AxiosResponse} from "axios";
 
 interface FormData {
     title: string;
     post_type: string;
 }
 
-const useCreatePost = () => {
+interface useCreatePostHook {
+    postTypeChoices: string[];
+    formData: FormData;
+    handleChange;
+    handleSubmit: (event: FormEvent<HTMLFormElement>) => Promise<void>;
+}
+
+const useCreatePost = (): useCreatePostHook => {
     const [formData, setFormData] = useState<FormData>(
         {
             title: '',
@@ -15,13 +23,13 @@ const useCreatePost = () => {
         }
     );
     const [postTypeChoices, setPostTypeChoices] = useState<string[]>([]);
-    const navigate = useNavigate();
+    const navigate:NavigateFunction = useNavigate();
 
     useEffect(() => {
         fetchPostTypeChoices();
     }, []);
 
-    const fetchPostTypeChoices = async () => {
+    const fetchPostTypeChoices = async ():Promise<void> => {
         try {
             const response = await axiosInstance.get<string[]>('/post-type-choices/');
             setPostTypeChoices(response.data);
@@ -39,12 +47,12 @@ const useCreatePost = () => {
     };
 
 
-    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const handleChange = (event: ChangeEvent<HTMLInputElement>):void => {
         const {name, value} = event.target;
         setFormData({...formData, [name]: value});
     };
 
-    const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (event: FormEvent<HTMLFormElement>):Promise<void> => {
         event.preventDefault();
         try {
             console.log(formData.post_type)

@@ -1,6 +1,17 @@
 import React from 'react';
 
-const Header = ({posts}) => {
+interface Post {
+    author: {
+        name: string;
+        email: string;
+    };
+}
+
+interface HeaderProps {
+    posts: Post[];
+}
+
+const Header: React.FC<HeaderProps> = ({posts}) => {
     if (!posts || !posts.length) {
         return <h1 className="title">Create your first post</h1>;
     } else {

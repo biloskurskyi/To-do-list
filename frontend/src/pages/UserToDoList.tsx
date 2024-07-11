@@ -7,13 +7,14 @@ import Header from "../components/Header.tsx";
 import Logout from "../components/Logout.tsx";
 import MyModal from "../components/UI/MyModal/MyModal.tsx";
 import DeleteUser from "../components/DeleteUser.tsx";
+import {AxiosResponse} from "axios";
 
 const UserToDoList = () => {
     const [todos, setTodos] = useState([]);
     const [modal, setModal] = useState(false);
 
     useEffect(() => {
-        const fetchToDos = async () => {
+        const fetchToDos = async ():Promise<void> => {
             try {
                 const response = await axiosInstance.get('/posts/');
                 setTodos(response.data);

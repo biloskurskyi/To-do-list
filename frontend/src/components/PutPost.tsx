@@ -1,24 +1,34 @@
-import React, {useEffect, useState} from 'react';
-import {useNavigate, useParams} from "react-router-dom";
+import React, {ChangeEvent, FormEvent, useEffect, useState} from 'react';
+import {NavigateFunction, useNavigate, useParams} from "react-router-dom";
 import axiosInstance from "../API/api.tsx";
 
-const PutPost = () => {
+interface PostTypeChoice {
+    0: string;
+    1: string;
+}
+
+interface PostData {
+    title: string;
+    post_type: string;
+}
+
+const PutPost: React.FC = () => {
     const {id} = useParams();
     const [formData, setFormData] = useState({
         title: '',
         post_type: '',
     });
-    const [postTypeChoices, setPostTypeChoices] = useState([]);
-    const navigate = useNavigate();
+    const [postTypeChoices, setPostTypeChoices] = useState<PostTypeChoice[]>([]);
+    const navigate: NavigateFunction = useNavigate();
 
     useEffect(() => {
         fetchPostTypeChoices();
         fetchPostData();
     }, []);
 
-    const fetchPostTypeChoices = async () => {
+    const fetchPostTypeChoices = async ():Promise<void> => {
         try {
-            const response = await axiosInstance.get('/post-type-choices/');
+            const response = await axiosInstance.get<PostTypeChoice[]>('/post-type-choices/');
             setPostTypeChoices(response.data);
         } catch (error) {
             console.error('Error fetching post type choices:', error.message);
@@ -34,7 +44,7 @@ const PutPost = () => {
     };
 
 
-    const fetchPostData = async () => {
+    const fetchPostData = async ():Promise<void> => {
         try {
             const response = await axiosInstance.get(`/post/${id}/`);
             setFormData({
@@ -46,12 +56,12 @@ const PutPost = () => {
         }
     };
 
-    const handleChange = (event) => {
+    const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLSelectElement>):void => {
         const {name, value} = event.target;
         setFormData({...formData, [name]: value});
     };
 
-    const handleSubmit = async (event) => {
+    const handleSubmit = async (event: FormEvent<HTMLFormElement>):Promise<void> => {
         event.preventDefault();
         try {
             const postData = {

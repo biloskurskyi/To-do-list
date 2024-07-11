@@ -3,6 +3,7 @@ version: "3.9"
 services:
   app:
     build:
+      dockerfile: ./app/Dockerfile
       context: .
       args:
         - DEV=true
@@ -37,7 +38,7 @@ services:
   isort:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: app/Dockerfile
     volumes:
       - ./app:/app
     command: isort -rc /app

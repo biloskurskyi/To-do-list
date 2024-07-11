@@ -1,9 +1,9 @@
 import React from 'react';
-import {Link, useNavigate} from "react-router-dom";
+import {Link, NavigateFunction, useNavigate} from "react-router-dom";
 
 const Logout = () => {
-    const navigate = useNavigate();
-    const handleLogout = () => {
+    const navigate:NavigateFunction = useNavigate();
+    const handleLogout = (): void => {
         localStorage.removeItem("jwtToken")
         navigate("/login")
     }

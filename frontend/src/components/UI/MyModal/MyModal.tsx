@@ -1,7 +1,13 @@
-import React from 'react';
+import React, {Dispatch, ReactNode, SetStateAction} from 'react';
 import cl from './MyModal.module.css'
 
-const MyModal = ({children, visible, setVisible}) => {
+interface MyModalProps {
+    children: ReactNode;
+    visible: boolean;
+    setVisible: Dispatch<SetStateAction<boolean>>;
+}
+
+const MyModal: React.FC<MyModalProps> = ({children, visible, setVisible}) => {
     const rootClasses = [cl.myModal]
     if (visible) {
         rootClasses.push(cl.active)

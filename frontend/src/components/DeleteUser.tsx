@@ -1,11 +1,11 @@
 import React from 'react';
-import {useNavigate} from "react-router-dom";
+import {NavigateFunction, useNavigate} from "react-router-dom";
 import axiosInstance from "../API/api.tsx";
 
 const DeleteUser = () => {
-    const navigate = useNavigate();
+    const navigate:NavigateFunction = useNavigate();
 
-    const handleDelete = async () => {
+    const handleDelete = async ():Promise<void> => {
         try {
 
             await axiosInstance.delete(`http://localhost:8000/api/delete/`)

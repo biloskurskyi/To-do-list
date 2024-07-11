@@ -1,8 +1,18 @@
 import React from 'react';
-import {useNavigate} from "react-router-dom";
+import {NavigateFunction, useNavigate} from "react-router-dom";
 
-const PostList = ({posts}) => {
-    const navigate = useNavigate();
+interface Post {
+    id: number,
+    title: string,
+    post_type_display: string;
+}
+
+interface PostListProps {
+    posts: Post[];
+}
+
+const PostList: React.FC<PostListProps> = ({posts}) => {
+    const navigate:NavigateFunction = useNavigate();
 
     if (!posts.length) {
         return (
@@ -10,7 +20,7 @@ const PostList = ({posts}) => {
         )
     }
 
-    const handleOpenPage = (id) => {
+    const handleOpenPage = (id):void => {
         navigate(`/userpost/${id}`);
     };
 
