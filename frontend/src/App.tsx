@@ -1,12 +1,13 @@
 import './styles/App.css'
-import React, {useState} from "react";
-import About from "./pages/About.tsx";
-import {router} from './router/router.tsx';
-import {Outlet, RouterProvider} from "react-router-dom";
+import {useEffect} from "react";
+import {Outlet} from "react-router-dom";
 
 function App() {
 
-    // const [headerContent, setHeaderContent] = useState();
+    useEffect(():void => {
+        document.title = "To do list";
+    }, []);
+
 
     return (
         <div className="app-page">

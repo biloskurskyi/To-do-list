@@ -35,25 +35,26 @@ services:
       - POSTGRES_USER=devuser
       - POSTGRES_PASSWORD=changeme
 
-  isort:
+  frontend:
     build:
-      context: .
-      dockerfile: app/Dockerfile
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "5173:80"
     volumes:
-      - ./app:/app
-    command: isort -rc /app
-    depends_on:
-      - app
+      - ./frontend:/src/app
+    command: npm run dev
 
-#  flake8:
+#  isort:
 #    build:
 #      context: .
-#      dockerfile: Dockerfile
+#      dockerfile: app/Dockerfile
 #    volumes:
 #      - ./app:/app
-#    command: flake8 /app
+#    command: isort -rc /app
 #    depends_on:
 #      - app
+
 
 
 volumes:
