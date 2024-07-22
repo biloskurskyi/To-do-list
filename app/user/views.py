@@ -36,7 +36,7 @@ class RegisterView(APIView):
 
         send_mail(subject, message, from_email, recipient_list)
         print(serializer.data)
-        return Response(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
 class ActivateUserView(APIView):
@@ -91,7 +91,7 @@ class LogoutView(APIView):
         response = Response()
         response.delete_cookie('jwt')
         response.data = {
-            'massage': 'success'
+            'message': 'success'
         }
         return response
 

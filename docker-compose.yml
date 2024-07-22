@@ -35,15 +35,15 @@ services:
       - POSTGRES_USER=devuser
       - POSTGRES_PASSWORD=changeme
 
-  frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-    ports:
-      - "5173:80"
-    volumes:
-      - ./frontend:/src/app
-    command: npm run dev
+#  frontend:
+#    build:
+#      context: ./frontend
+#      dockerfile: Dockerfile
+#    ports:
+#      - "5173:80"
+#    volumes:
+#      - ./frontend:/src/app
+#    command: npm run dev
 
 #  isort:
 #    build:

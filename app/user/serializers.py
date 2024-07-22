@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404
 from rest_framework import serializers
 
-from core.models import User, UserPost
+from core.models import User
 
 
 class UserSerializer(serializers.ModelSerializer):

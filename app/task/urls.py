@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import (PostDetailView, PostsView, PostTypeChoicesView, )
+from .views import PostDetailView, PostsView, PostTypeChoicesView
 
 app_name = 'task'
 
