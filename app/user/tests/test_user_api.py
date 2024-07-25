@@ -96,8 +96,6 @@ class UserApiTests(UserApiTestsBase):
         """
         self.register_user()
 
-        # print(f"User is_active: {user.is_active}")
-
         token = self.get_token()
 
         self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {token}')
