@@ -13,6 +13,7 @@ from app.settings import FRONTEND_BASE_URL
 from core.models import User, UserPost
 
 from .serializers import UserSerializer
+from .tasks import send_registration_email
 from .utils import decode_activation_token, generate_activation_token
 
 
@@ -29,13 +30,11 @@ class RegisterView(APIView):
         subject = 'Welcome to Our Service'
         message = (
             f"Thank you for registering. Your account is currently inactive. "
-            f"For activate click this link: {frontend_base_url}/activate/{token}/")  # {activation_link}
-        # f"For activate click this link: http://localhost:8000/api/activate/{user.id}/")
+            f"For activate click this link: {frontend_base_url}/activate/{token}/")
         from_email = 'digitalautoservice2024@gmail.com'
         recipient_list = [user.email]
 
-        send_mail(subject, message, from_email, recipient_list)
-        # print(serializer.data)
+        send_registration_email.delay(subject, message, from_email, recipient_list)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 

@@ -162,3 +162,5 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 FRONTEND_BASE_URL = "http://localhost:5173"
+
+CELERY_BROKER_URL = 'redis://redis:6379/0'

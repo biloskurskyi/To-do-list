@@ -35,6 +35,45 @@ services:
       - POSTGRES_USER=devuser
       - POSTGRES_PASSWORD=changeme
 
+  redis:
+    image: redis:7.0.5-alpine
+    hostname: redis
+
+
+  worker:
+    build:
+      context: .
+      dockerfile: ./app/Dockerfile
+    hostname: worker
+    entrypoint: celery
+    command: -A celery_app.app worker --loglevel=info
+    volumes:
+      - ./app:/app
+    links:
+      - redis
+    depends_on:
+      - redis
+
+  flower:
+    build:
+     context: .
+     dockerfile: ./app/Dockerfile
+    hostname: flower
+    entrypoint: celery
+    command: -A celery_app.app flower
+    volumes:
+      - ./app:/app
+    links:
+      - redis
+    depends_on:
+      - redis
+    ports:
+      - "5555:5555"
+
+
+
+
+
 #  frontend:
 #    build:
 #      context: ./frontend
@@ -45,15 +84,6 @@ services:
 #      - ./frontend:/src/app
 #    command: npm run dev
 
-#  isort:
-#    build:
-#      context: .
-#      dockerfile: app/Dockerfile
-#    volumes:
-#      - ./app:/app
-#    command: isort -rc /app
-#    depends_on:
-#      - app
 
 
 
