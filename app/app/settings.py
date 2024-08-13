@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'core',
     'user',
     'task',
+    'celery_folder',
 ]
 
 MIDDLEWARE = [
@@ -164,3 +165,4 @@ CORS_ALLOWED_ORIGINS = [
 FRONTEND_BASE_URL = "http://localhost:5173"
 
 CELERY_BROKER_URL = 'redis://redis:6379/0'
+CELERY_RESULT_BACKEND = 'redis://redis:6379/0'
