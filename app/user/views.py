@@ -35,6 +35,7 @@ class RegisterView(APIView):
         recipient_list = [user.email]
 
         send_registration_email.delay(subject, message, from_email, recipient_list)
+        # send_mail(subject, message, from_email, recipient_list)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 

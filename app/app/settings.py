@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'core',
     'user',
     'task',
+    'celery_folder',
 ]
 
 MIDDLEWARE = [
