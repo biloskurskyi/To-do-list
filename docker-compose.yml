@@ -56,8 +56,8 @@ services:
 
   flower:
     build:
-     context: .
-     dockerfile: ./app/Dockerfile
+      context: .
+      dockerfile: ./app/Dockerfile
     hostname: flower
     entrypoint: celery
     command: -A celery_folder.celery_app.app flower
@@ -69,21 +69,6 @@ services:
       - redis
     ports:
       - "5555:5555"
-
-
-
-
-
-#  frontend:
-#    build:
-#      context: ./frontend
-#      dockerfile: Dockerfile
-#    ports:
-#      - "5173:80"
-#    volumes:
-#      - ./frontend:/src/app
-#    command: npm run dev
-
 
 
 
