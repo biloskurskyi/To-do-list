@@ -1,4 +1,8 @@
+import re
+
+from decouple import config
 from django.contrib.auth.models import AbstractUser, BaseUserManager
+from django.core.exceptions import ValidationError
 from django.db import models
 
 
@@ -47,6 +51,16 @@ class User(AbstractUser):
 
     def __str__(self):
         return f"{self.name} with email {self.email}"
+
+    def set_password(self, raw_password):
+        # Custom password validation
+        if len(raw_password) < config('PASSWORD_LENGTH'):
+            raise ValidationError("Password must be at least 8 characters long.")
+        if not re.search(r'[A-Z]', raw_password):
+            raise ValidationError("Password must contain at least one uppercase letter.")
+
+        # If the validation passes, set the password using Django's built-in method
+        super().set_password(raw_password)
 
 
 class UserPost(models.Model):
