@@ -24,10 +24,9 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USER }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-
       - name: Run Migrations
         run: docker compose run --rm app sh -c "python manage.py wait_for_db && python manage.py migrate"
-        with:
+        env:
           SECRET_KEY: ${{ secrets.SECRET_KEY }}
           DEBUG: ${{ secrets.DEBUG }}
           DB_HOST: ${{ secrets.DB_HOST }}
@@ -37,7 +36,7 @@ jobs:
 
       - name: Test
         run: docker compose run --rm app sh -c "python manage.py wait_for_db"
-        with:
+        env:
           SECRET_KEY: ${{ secrets.SECRET_KEY }}
           DEBUG: ${{ secrets.DEBUG }}
           DB_HOST: ${{ secrets.DB_HOST }}
@@ -47,6 +46,6 @@ jobs:
 
       - name: Lint
         run: docker compose run --rm app sh -c "flake8"
-        with:
+        env:
           SECRET_KEY: ${{ secrets.SECRET_KEY }}
           DEBUG: ${{ secrets.DEBUG }}
