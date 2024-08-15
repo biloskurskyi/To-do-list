@@ -3,7 +3,7 @@ LABEL maintainer="londonappdeveloper.com"
 
 ENV PYTHONUNBUFFERED 1
 
-COPY ./app/.env .env
+#COPY ./app/.env .env
 COPY ./app/requirements.txt /tmp/requirements.txt
 COPY ./app/requirements.dev.txt /tmp/requirements.dev.txt
 COPY ./app /app

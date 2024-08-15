@@ -17,7 +17,7 @@ class UserApiTestsBase(TestCase):
         self.delete_url = reverse('user:delete')
         self.user_data = {
             'name': 'testuser',
-            'password': 'testpassword123',
+            'password': 'Testpassword123',
             'email': 'testuser@test.com',
             'is_active': True
         }
